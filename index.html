@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Rose Éternelle — Eau de Parfum 50 ML | Parfums</title>
+<meta name="description" content="Rose Éternelle Eau de Parfum, 50 ML. A rose captured at full bloom — bergamot and pink pepper over a heart of Rose de Mai, settling into oud, amber and musk.">
+<meta name="theme-color" content="#f3d9d8">
+<link rel="canonical" href="/">
+
+<!-- Social -->
+<meta property="og:type" content="product">
+<meta property="og:title" content="Rose Éternelle — Eau de Parfum 50 ML">
+<meta property="og:description" content="A rose captured at full bloom — bergamot and pink pepper over a heart of Rose de Mai.">
+<meta property="og:image" content="assets/env/hero_plate.webp">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<!-- the film's final frame is also the hero's first frame, so it is the one
+     genuinely critical image. The film itself carries preload="auto". -->
+<link rel="preload" as="image" href="assets/env/hero_plate.webp">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8C%B9%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/app.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Rose Éternelle",
+  "category": "Eau de Parfum",
+  "description": "A rose captured at full bloom — bergamot and pink pepper over a heart of Rose de Mai, settling into oud, amber and musk.",
+  "image": "assets/env/hero_plate.webp",
+  "brand": { "@type": "Brand", "name": "Rose Éternelle Parfums" },
+  "size": "50 ML",
+  "offers": {
+    "@type": "Offer",
+    "price": "6999",
+    "priceCurrency": "INR",
+    "availability": "https://schema.org/InStock"
+  }
+}
+</script>
+</head>
+
+<body class="loading">
+
+<!-- ══════════ loading state ══════════
+     A wordmark and a hairline. No spinner, no percentage. -->
+<div id="loader">
+  <div class="load-mark">
+    <span class="load-name">Rose Éternelle</span>
+    <span class="load-sub">Parfums</span>
+  </div>
+  <div class="load-bar" role="progressbar" aria-label="Loading" aria-valuetext="Loading"><i></i></div>
+</div>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<!-- ══════════ the film ══════════
+     Not an overlay and not a landing page: the opening of the home page.
+     Nothing is layered over it and there is no skip control — scrolling is
+     the exit. -->
+<div id="intro" aria-hidden="true">
+  <video id="intro-vid" muted playsinline preload="auto"
+         poster="assets/env/hero_plate.webp" tabindex="-1">
+    <source src="assets/intro.mp4" type="video/mp4">
+  </video>
+</div>
+
+<!-- ══════════ the fixed cinematic stage ══════════
+     Layer order is the whole architecture:
+       plate   the film's final frame, dissolves into the live scene
+       #gl     environment plates + far petals   (behind the product)
+       #bottle the flacon, 2D canvas of alpha frames
+       #gl-fg  near petals, droplets, the cloud passage (in front of it)
+       #veil   the inside of the cloud
+       #scrim  a soft gradient reserving the left for typography -->
+<div id="stage" aria-hidden="true">
+  <div id="plate"></div>
+  <canvas id="gl"></canvas>
+  <canvas id="bottle"></canvas>
+  <canvas id="gl-fg"></canvas>
+  <div id="veil"></div>
+  <div id="scrim"></div>
+</div>
+
+<!-- ══════════ navigation ══════════ -->
+<nav id="nav" aria-label="Primary">
+  <a class="brand" href="#top">
+    <span class="brand-name">Rose Éternelle</span>
+    <span class="brand-sub">Parfums</span>
+  </a>
+
+  <ul class="menu">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#ch-essence">The Essence</a></li>
+    <li><a href="#ch-rose">The Fragrance</a></li>
+    <li><a href="#ch-notes">Notes</a></li>
+    <li><a href="#ch-signature">Story</a></li>
+    <li><a href="#final">Shop</a></li>
+  </ul>
+
+  <div class="tools">
+    <button type="button" aria-label="Search">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
+    </button>
+    <button type="button" aria-label="Bag" class="bag">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      <b id="bag-count" hidden>0</b>
+    </button>
+    <button type="button" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-panel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+    </button>
+  </div>
+
+  <!-- narrow viewports get a panel, not a squeezed row -->
+  <div id="nav-panel" aria-hidden="true">
+    <ul>
+      <li><a href="#top">Home</a></li>
+      <li><a href="#ch-essence">The Essence</a></li>
+      <li><a href="#ch-rose">The Fragrance</a></li>
+      <li><a href="#ch-notes">Notes</a></li>
+      <li><a href="#ch-signature">Story</a></li>
+      <li><a href="#final">Shop</a></li>
+    </ul>
+    <p class="panel-mark">Rose Éternelle · Parfums</p>
+  </div>
+</nav>
+
+<!-- ══════════ ACT I · hero ══════════
+     Copy on the left; the branch and the flacon own the right. -->
+<header id="top" class="hero">
+  <div class="hero-copy">
+    <p class="kicker reveal">The Essence of Elegance</p>
+    <h1 class="reveal"><span>Rose</span><em>Éternelle</em></h1>
+    <p class="sub reveal">Eau de Parfum · 50 ML</p>
+    <p class="lede reveal">A rose captured at full bloom — bergamot and pink pepper
+      over a heart of Rose de Mai.</p>
+    <a class="cta reveal" href="#ch-rosebud">
+      <span>Discover</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+
+  <div class="cue" aria-hidden="true"><small>Scroll</small><i></i></div>
+</header>
+
+<!-- ══════════ ACT I · the approach ══════════
+     The flacon turns and the camera drifts in, before the cloud arrives. -->
+<section id="approach" aria-labelledby="approach-title">
+  <div class="pin">
+    <div id="approach-copy" class="copy reveal">
+      <h2 id="approach-title" class="vh">The Approach</h2>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ THE PASSAGE ══════════
+     Pinned. The camera flies through cloud planes into the second world.
+     Visually wordless by design; the heading exists for structure. -->
+<section id="portal" aria-labelledby="portal-title">
+  <h2 id="portal-title" class="vh">Into the cloud</h2>
+  <p class="vh">The rose field gives way to cloud, and the cloud opens onto the
+    world the fragrance is built from.</p>
+</section>
+
+<!-- ══════════ ACT II · the story ══════════ -->
+<main id="chapters"></main>
+
+<!-- ══════════ the product ══════════ -->
+<section id="final" aria-labelledby="p-name">
+  <div class="final-media" role="img"
+       aria-label="Rose Éternelle among roses and pink cloud"></div>
+
+  <div class="final-panel">
+    <p class="kicker reveal">The Bottle</p>
+    <h2 id="p-name" class="reveal"></h2>
+    <p id="p-kind" class="p-kind reveal"></p>
+    <p id="p-blurb" class="p-blurb reveal"></p>
+
+    <div class="p-row reveal">
+      <span id="p-size" class="p-size"></span>
+      <span id="p-price" class="p-price"></span>
+    </div>
+
+    <div class="p-buy reveal">
+      <div class="qty" role="group" aria-label="Quantity">
+        <button id="qminus" type="button" aria-label="Decrease quantity">&minus;</button>
+        <span id="qty" aria-live="polite">1</span>
+        <button id="qplus" type="button" aria-label="Increase quantity">+</button>
+      </div>
+      <button id="add" class="buy" type="button">
+        <span class="label">Add to bag</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+
+    <button id="wish" class="wish reveal" type="button" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.4-7-9.2A3.8 3.8 0 0 1 12 8a3.8 3.8 0 0 1 7 2.8C19 15.6 12 20 12 20z"/></svg>
+      <span>Add to wishlist</span>
+    </button>
+  </div>
+</section>
+
+<footer>
+  <p class="f-mark">Rose Éternelle</p>
+  <ul class="f-links">
+    <li><a href="#top">Home</a></li>
+    <li><a href="#ch-notes">Notes</a></li>
+    <li><a href="#final">Shop</a></li>
+  </ul>
+  <small>Concept study · not a real product</small>
+</footer>
+
+<!-- three.js is vendored: a CDN stall would hold the whole module graph, and
+     with it the film, since the scene and the intro share an entry point -->
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.js" } }
+</script>
+<script type="module" src="js/main.js"></script>
+
+<noscript>
+  <style>#loader,#intro,#stage{display:none}body{background:#f7e6e4}</style>
+</noscript>
+</body>
+</html>
