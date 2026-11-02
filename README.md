@@ -2,6 +2,8 @@
 
 A scroll-driven fragrance film that moves from an opening video into a layered WebGL world, then travels through clouds to a second scene. Built as a frontend experience with vanilla JavaScript and a vendored Three.js module.
 
+**[View the live demo](https://suhailchalil.github.io/rose-eternelle/)**
+
 ![Rose Éternelle fragrance experience preview](preview.webp)
 
 ## Run locally
